@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard – Classroom Manager{% endblock %}
+{% block content %}
+<h2>Dashboard</h2>
+
+<h3 class="mt-4">Students
+    <a href="{{ url_for('add_student') }}" class="btn btn-sm btn-success ms-2">Add Student</a>
+</h3>
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First</th>
+            <th>Last</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.id }}</td>
+            <td>{{ s.first_name }}</td>
+            <td>{{ s.last_name }}</td>
+            <td><a class="btn btn-sm btn-outline-primary" href="{{ url_for('student_results', student_id=s.id) }}">View
+                    Results</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3 class="mt-5">Quizzes
+    <a href="{{ url_for('add_quiz') }}" class="btn btn-sm btn-success ms-2">Add Quiz</a>
+</h3>
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Subject</th>
+            <th># Qs</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for q in quizzes %}
+        <tr>
+            <td>{{ q.id }}</td>
+            <td>{{ q.subject }}</td>
+            <td>{{ q.num_questions }}</td>
+            <td>{{ q.quiz_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('add_result') }}" class="btn btn-primary mt-4">Add Quiz Result</a>
+{% endblock %}

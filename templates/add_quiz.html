@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Add Quiz{% endblock %}
+{% block content %}
+<h2>Add Quiz</h2>
+<form method="post" style="max-width: 400px;">
+    <div class="mb-3">
+        <label class="form-label">Subject</label>
+        <input name="subject" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Number of Questions</label>
+        <input type="number" name="num_questions" class="form-control" min="1" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Date (YYYY-MM-DD)</label>
+        <input type="date" name="quiz_date" class="form-control" required>
+    </div>
+    <button class="btn btn-success">Save</button>
+    <a class="btn btn-secondary" href="{{ url_for('dashboard') }}">Cancel</a>
+</form>
+{% endblock %}

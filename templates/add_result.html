@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Add Quiz Result{% endblock %}
+{% block content %}
+<h2>Add Quiz Result</h2>
+<form method="post" style="max-width: 400px;">
+    <div class="mb-3">
+        <label class="form-label">Student</label>
+        <select name="student_id" class="form-select" required>
+            <option value="" disabled selected>Choose…</option>
+            {% for s in students %}
+            <option value="{{ s.id }}">{{ s.id }} – {{ s.first_name }} {{ s.last_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Quiz</label>
+        <select name="quiz_id" class="form-select" required>
+            <option value="" disabled selected>Choose…</option>
+            {% for q in quizzes %}
+            <option value="{{ q.id }}">#{{ q.id }} – {{ q.subject }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Score (0-100)</label>
+        <input type="number" name="score" class="form-control" min="0" max="100" required>
+    </div>
+    <button class="btn btn-success">Save</button>
+    <a class="btn btn-secondary" href="{{ url_for('dashboard') }}">Cancel</a>
+</form>
+{% endblock %}
